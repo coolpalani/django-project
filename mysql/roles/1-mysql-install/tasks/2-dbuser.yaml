@@ -1,0 +1,22 @@
+---
+
+- name: Create django-db database
+  mysql_db:
+    name: "{{django_mysql_db}}"
+    state: present
+    login_user: root
+    login_password: 'citrix$123'
+  register: create_db
+  ignore_errors: false
+
+
+- name: Create database user for django
+  mysql_user:
+    name: "{{django_db_user}}"
+    password: 'citrix@123'
+    priv: '{{django_mysql_db}}.*:ALL'
+    state: present
+    login_user: root
+    login_password: 'citrix$123'
+  when: create_db | succeeded
+  ignore_errors: false

@@ -1,0 +1,45 @@
+---
+
+- name: Check if mysql(mariadb) if already installed
+  command: rpm -q mariadb
+  register: check_rpm
+  ignore_errors: true
+
+- debug:
+    msg: "mariadb is already installed, package installation will be skipped"
+  when: check_rpm | succeeded
+
+- name: Install mysql(mariadb)
+  package:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - mariadb-server
+    - MySQL-python
+  register: install_mariadb
+  when: check_rpm | failed
+  ignore_errors: false
+
+- name: Start database services
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+  register: db_svc
+  when: ( check_rpm | failed ) and
+        ( install_mariadb | succeeded )
+  ignore_errors: false
+
+- name: Set root password
+  mysql_user:
+    name: root
+    password: 'citrix$123'
+    check_implicit_admin: true
+  when: ( check_rpm | failed ) and
+        ( db_svc | succeeded )
+  ignore_errors: false
+
+
+- include: 2-dbuser.yaml
+  when: ( check_rpm | failed ) and
+        ( db_svc | succeeded )

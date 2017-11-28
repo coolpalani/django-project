@@ -1,0 +1,5 @@
+---
+
+- hosts: django-db
+  roles:
+    - 1-mysql-install
