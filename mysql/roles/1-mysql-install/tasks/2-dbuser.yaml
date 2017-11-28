@@ -14,8 +14,9 @@
   mysql_user:
     name: "{{django_db_user}}"
     password: 'citrix@123'
-    priv: '{{django_mysql_db}}.*:ALL'
+    priv: '{{django_mysql_db}}.*:ALL,GRANT'
     state: present
+    host: "%"
     login_user: root
     login_password: 'citrix$123'
   when: create_db | succeeded

@@ -16,7 +16,7 @@
   with_items:
     - mariadb-server
     - MySQL-python
-  register: install_mariadb
+  register: install_mariadb3-deluser
   when: check_rpm | failed
   ignore_errors: false
 

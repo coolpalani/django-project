@@ -1,0 +1,10 @@
+---
+
+- name: Delete database user
+  mysql_user:
+    name: "{{django_db_user}}"
+    host_all: yes
+    state: absent
+    login_user: root
+    login_password: 'citrix$123'
+  ignore_errors: false
