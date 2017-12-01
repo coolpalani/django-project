@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
 from django.db import models
 # Added by sumit
 # Source: https://www.digitalocean.com/community/tutorials/how-to-create-django-models
@@ -20,6 +21,30 @@ class Employees(models.Model):
     full_name = models.CharField(max_length=30)
     def __str__(self):
         return self.user_id
+
+class Ctxapacusers(models.Model):
+#    class Meta:
+#        db_table = 'apacusers'
+    user_name = models.CharField(primary_key=True, max_length=10, unique=True)
+    full_name = models.CharField(max_length=30)
+    email_id = models.EmailField(max_length=50)
+    emp_contact = models.CharField(max_length=15)
+    def __str__(self):
+        return self.user_name
+
+class Skills(models.Model):
+    skills = models.CharField(max_length=50, primary_key=True, unique=True)
+    def __str__(self):
+        return self.skills
+
+class Skills_map(models.Model):
+    user_id = models.ForeignKey(Ctxapacusers, on_delete=models.CASCADE)
+    skill_name = models.ForeignKey(Skills, on_delete=models.CASCADE)
+    skill_level = models.IntegerField()
+    def __str__(self):
+        return self.skill_level
+
+
 
 
 #    def set_password(self, raw_password):
