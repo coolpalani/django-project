@@ -25,7 +25,7 @@ class Employees(models.Model):
 class Ctxapacusers(models.Model):
 #    class Meta:
 #        db_table = 'apacusers'
-    user_name = models.CharField(primary_key=True, max_length=10, unique=True)
+    user_name = models.CharField(max_length=10, unique=True)
     full_name = models.CharField(max_length=30)
     email_id = models.EmailField(max_length=50)
     emp_contact = models.CharField(max_length=15)
@@ -33,7 +33,7 @@ class Ctxapacusers(models.Model):
         return self.user_name
 
 class Skills(models.Model):
-    skills = models.CharField(max_length=50, primary_key=True, unique=True)
+    skills = models.CharField(max_length=50, unique=True)
     def __str__(self):
         return self.skills
 

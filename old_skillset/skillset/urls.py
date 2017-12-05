@@ -15,15 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from apacskills import views
-#from apacskills.views import skillmap, ListSkillmap
-from apacskills.views import skillmap
+from main import views
+from main.views import UserList
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #    url(r'', include('main.urls'))
-    #    url(r'^$', views.homepage, name='homepage'),
-    url(r'^$', views.skillmap.as_view(), name='homepage'),
-    #url(r'tech_map', ListSkillmap.as_view(), name='techmap'),
-    #url(r'^$', views.skillmap, name='homepage'),
-    #url(r'^$', views.Sumitview, name='homepage'),
+#    url(r'', include('main.urls'))
+#    url(r'^$', views.homepage, name='homepage'),
+    url(r'^$', UserList.as_view(), name='homepage'),
 ]

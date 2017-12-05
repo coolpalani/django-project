@@ -1,2 +1,2 @@
-django_mysql_db: django-db
+django_mysql_db: skillset-db
 django_db_user: ctxdjango

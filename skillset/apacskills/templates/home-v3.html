@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>   Hello {% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
+  <h1>Skills View</h1>
+  <!-- https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700 -->
+
+  <ul>
+
+    {% for skill_result in xs_skill_name %}
+    <p><a>Product Name: {{ skill_result }}</a></p>
+
+    sumit
+    {{ found_map }}
+    <table border="1">
+
+      {% for skills_map in found_map  %}
+      <tr>
+        <th width=100px>{{ skills_map.user_id_id}}</th>
+
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% endfor %}
+
+  </ul>
+
+{% endblock %}
+
+          <!--{% for skill_map_result in xs_map_results %}-->
+
+
+
+
+          <!--{% endfor %}-->
+
+
+        <!--  <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>-->

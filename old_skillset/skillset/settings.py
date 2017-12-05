@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*udu+wn-yzm2o(cqk*x+tamf&toqe8zanouvnrae5y)3z1a8!q'
+SECRET_KEY = 'z)1zpcfm87h3tex#)c1u-zl!7be%n_6)@&46cfrh_yu$p2@76v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apacskills'
+    'django.contrib.humanize',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,15 @@ WSGI_APPLICATION = 'skillset.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
+# added by sumit
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -87,7 +97,6 @@ DATABASES = {
         },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

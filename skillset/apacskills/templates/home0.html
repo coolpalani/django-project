@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>   Hello {% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
+  <h1>Employees List</h1>
+
+    <ul>
+      <table border="1">
+      <tr>
+        <th>Citrix Id</th>
+        <th>Full Name</th>
+      </tr>
+      {% for employee in object_list %}
+      <tr>
+        <th> {{ employee.user_name }} </th>
+        <th> {{ employee.full_name }} </th>
+      </tr>
+      {% endfor %}
+      </table>
+
+    </ul>
+
+{% endblock %}

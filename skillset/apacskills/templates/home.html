@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>   Hello {% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
+  <h1>Skills View</h1>
+
+    <!-- https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700 -->
+
+    <ul>
+      {% if xs_skill_name %}
+      {% for found_skill in xs_skill_name  %}
+          <p><a>{{ found_skill.skills }}</a></p>
+          {% for result in xs_map_results %}
+          <table border="1">
+            <tr>
+              <th width=100px>{{ result.user_id_id }}</th>
+              <th width=100px>{{ result.skill_level }}</th>
+              <th width=100px>{{ result.skill_name_id }}</th>
+            </tr>
+          </table>
+          <!--  <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>-->
+          {% endfor %}
+      {% endfor %}
+      {% endif %}
+
+
+    </ul>
+
+
+<!-- ############################################################## -->
+    <ul>
+      <p><a>{{ xs_skill_name }}</a></p>
+    </ul>
+
+    <!-- https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700 -->
+    {% if xs_map_results %}
+      <ul>
+        {% for result in xs_map_results %}
+        <table border="1">
+          <tr>
+            <th width=100px>{{ result.user_id_id }}</th>
+            <th width=100px>{{ result.skill_level }}</th>
+          </tr>
+        </table>
+        <!--  <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>-->
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  <ul>
+    <p><a>{{ lvda_skill_name }}</a></p>
+  </ul>
+
+  <!-- https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700 -->
+  {% if lvda_map_results %}
+    <ul>
+      {% for result in lvda_map_results %}
+      <table border="1">
+        <tr>
+          <th width=100px>{{ result.user_id_id }}</th>
+          <th width=100px>{{ result.skill_level }}</th>
+        </tr>
+      </table>
+      <!--  <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>-->
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <!--  <ul>
+      <li>{{ skill_name }}</li>
+      <table border="1">
+      {% for skill_map in object_list %}
+      <li> {{ map }} </li>
+      {% endfor %}
+      </table>
+
+    </ul>-->
+
+{% endblock %}
