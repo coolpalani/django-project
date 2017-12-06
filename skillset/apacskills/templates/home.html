@@ -7,32 +7,65 @@
     <!-- https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700 -->
 
     <ul>
-      {% if xs_skill_name %}
-      {% for found_skill in xs_skill_name  %}
-          <p><a>{{ found_skill.skills }}</a></p>
-          {% for result in xs_map_results %}
-          <table border="1">
-            <tr>
-              <th width=100px>{{ result.user_id_id }}</th>
-              <th width=100px>{{ result.skill_level }}</th>
-              <th width=100px>{{ result.skill_name_id }}</th>
-            </tr>
-          </table>
-          <!--  <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>-->
-          {% endfor %}
-      {% endfor %}
-      {% endif %}
+        {% if skill_name %}
+        {% for found_skill in skill_name %}
+              <p><a>{{ found_skill.skills }}</a></p>
+              {% if found_skill.skills == "LVDA" %}
+                {% for result in lvda_skill_list %}
+                  <table border="1">
+                    <tr>
 
+                      <th width=100px>{{ result.user_id_id }}</th>
+                      <th width=100px>{{ result.skill_level }}</th>
+                      <th width=100px>{{ result.skill_name_id }}</th>
+                    </tr>
+                  </table>
+                {% endfor %}
+              {% elif found_skill.skills == "XenServer" %}
+              {% for result in xs_skill_list %}
+                <table border="1">
+                  <tr>
+
+                    <th width=100px>{{ result.user_id_id }}</th>
+                    <th width=100px>{{ result.skill_level }}</th>
+                    <th width=100px>{{ result.skill_name_id }}</th>
+                  </tr>
+                </table>
+              {% endfor %}
+              {% elif found_skill.skills == "Receiver for Linux" %}
+              {% for result in rfl_skill_list %}
+                <table border="1">
+                  <tr>
+
+                    <th width=100px>{{ result.user_id_id }}</th>
+                    <th width=100px>{{ result.skill_level }}</th>
+                    <th width=100px>{{ result.skill_name_id }}</th>
+                  </tr>
+                </table>
+              {% endfor %}
+              {% endif %}
+
+
+
+
+
+
+        {% endfor %}
+        {% endif %}
 
     </ul>
 
 
-<!-- ############################################################## -->
+<!--
+         -->
+
+
+<!-- ##############################################################
     <ul>
       <p><a>{{ xs_skill_name }}</a></p>
     </ul>
 
-    <!-- https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700 -->
+   https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700
     {% if xs_map_results %}
       <ul>
         {% for result in xs_map_results %}
@@ -42,7 +75,7 @@
             <th width=100px>{{ result.skill_level }}</th>
           </tr>
         </table>
-        <!--  <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>-->
+        <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>
         {% endfor %}
       </ul>
     {% endif %}
@@ -51,7 +84,7 @@
     <p><a>{{ lvda_skill_name }}</a></p>
   </ul>
 
-  <!-- https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700 -->
+https://stackoverflow.com/questions/39661541/django-get-returned-more-than-one-it-returned-700
   {% if lvda_map_results %}
     <ul>
       {% for result in lvda_map_results %}
@@ -61,11 +94,11 @@
           <th width=100px>{{ result.skill_level }}</th>
         </tr>
       </table>
-      <!--  <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>-->
+       <li><p>{{ result.user_id_id }} {{result.skill_level}} </p></li>
       {% endfor %}
     </ul>
   {% endif %}
-  <!--  <ul>
+   <ul>
       <li>{{ skill_name }}</li>
       <table border="1">
       {% for skill_map in object_list %}

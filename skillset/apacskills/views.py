@@ -25,18 +25,59 @@ from django.views import View
 
 class skillmap(generic.ListView, View):
 
-    def get(self, request):
-        # Working   template_name: home-v1.html-----------------
+    def a(self):
         skill_list = Skills.objects.all()
-        xs_skill = Skills.objects.filter(skills__in = skill_list)
-        #for product in skill_list:
-        xs_map_results = Skills_map.objects.filter(skill_name_id__in = skill_list)
+        #return render(request, 'home.html', context={"skill_name": skill_list})
+        return skill_list
+
+    def get_lvda(self):
+        lvda_skill_map = Skills_map.objects.filter(skill_name_id='LVDA')
+        return lvda_skill_map
+    def get_xs(self):
+        xs_skill_map = Skills_map.objects.filter(skill_name_id='XenServer')
+        return xs_skill_map
+
+    def get_rfl(self):
+        rfl_skill_map = Skills_map.objects.filter(skill_name_id='Receiver for Linux')
+        return rfl_skill_map
+
+    def get(self, request):
+        skill_list=self.a()
+        lvda_skill_map=self.get_lvda()
+        xs_skill_map=self.get_xs()
+        rfl_skill_map=self.get_rfl()
+        return render(request, 'home.html', context={"skill_name": skill_list, "lvda_skill_list": lvda_skill_map, "xs_skill_list": xs_skill_map, "rfl_skill_list": rfl_skill_map })
+    #productList = list()
+    #for product_name in xs_skill:
+    #    productList.append(product_name)
+    #    xs_map_results = Skills_map.objects.filter(skill_name_id=product_name)
+
+    #def get(self, request):
+    #    skill_list=self.a()
+        # Working   template_name: home-v1.html-----------------
+        #tech_product_list = []
+
+    #    xs_skill = Skills.objects.filter(skills__contains='XenServer')
+
+        #productList = list()
+    #    for product_name in xs_skill:
+        #    productList.append(product_name)
+    #        xs_map_results = Skills_map.objects.filter(skill_name_id=product_name)
+        #for product in xs_skill:
+        #xs_map_results = Skills_map.objects.values_list('user_id_id', 'skill_name_id')
+        #xs_map_results = Skills_map.objects.values('user_id_id', 'skill_name_id', 'skill_level')
+
         #lvda_skill = Skills.objects.filter(skills = 'LVDA')
         #lvda_map_results = Skills_map.objects.filter(skill_name_id = 'LVDA')
         #return render(request, 'home.html', context={"xs_map_results": xs_map_results, "xs_skill_name": xs_skill, "lvda_map_results": lvda_map_results, "lvda_skill_name": lvda_skill})
-        return render(request, 'home.html', context={"xs_map_results": xs_map_results, "xs_skill_name": xs_skill})
+    #    return render(request, 'home.html', context={"xs_map_results": xs_map_results, "skill_name": skill_list})
         #---------------------
+    #def get(self, request):
 
+    #    lva_skill = Skills.objects.filter(skills__contains='LVDA')
+    #    for product_name in lva_skill:
+    #        lvda_map_results =  Skills_map.objects.filter(skill_name_id=product_name)
+    #    return render(request, 'home.html', context={"lvda_map_results": lvda_map_results})
         # For loop
         #tech_product = ['XenServer','LVDA' ]
         #tech_product_list = []
