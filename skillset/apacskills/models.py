@@ -26,6 +26,7 @@ class Ctxapacusers(models.Model):
     full_name = models.CharField(max_length=30)
     email_id = models.EmailField(max_length=50)
     emp_contact = models.CharField(max_length=15)
+    is_admin = models.BooleanField(default=False)
     def __str__(self):
         return self.user_name
 
@@ -38,6 +39,7 @@ class Skills_map(models.Model):
     user_id = models.ForeignKey(Ctxapacusers, on_delete=models.CASCADE)
     skill_name = models.ForeignKey(Skills, on_delete=models.CASCADE)
     #skill_level = models.IntegerField()
-    skill_level = models.CharField(max_length=1, choices=(('P', 'Primary'),('S', 'Secondary')))
+    skill_level = models.CharField(max_length=1, choices=(('S', 'SME'),('Y', 'Support')))
+    timestamp = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.skill_level
